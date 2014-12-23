@@ -1,6 +1,6 @@
 /* 
  * File:   Parser.h
- * Author: danielrigby
+ * Author: Daniel Rigby
  *
  * Created on December 23, 2014, 10:23 AM
  */
@@ -9,18 +9,20 @@
 #define	PARSER_H
 
 #include <string>
+#include "ParseTree.h"
+#include "ParsingConstants.h"
 
 using namespace std;
 
-const char DELIMITERS[] = {';', ' '};
-const char OPERATORS[] = {'+', '-', '*', '/'};
-const char SYMBOLS[] = {'{', '}', '(', ')', '[', ']'};
-
+//Parser class handles parsing of a string of code and storing them into a Parse Tree
 class Parser 
 {
 public:
     Parser();
     ~Parser();
+    void loadData(string);
+    ParseTree* parse();
+    ParseTree* parse(string);
 private:
     string data;
 };

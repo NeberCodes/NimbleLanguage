@@ -107,10 +107,12 @@ ExpressionNode::~ExpressionNode()
 
 bool ExpressionNode::isBrace()
 {
-    if(symbol == '{' || symbol == '}' || symbol == '(' || symbol == ')' ||
-            symbol == '[' || symbol == ']')
+    for(int i = 0; i < SYMBOLS_LENGTH; i++)
     {
-        return true;
+        if(symbol == SYMBOLS[i])
+        {
+            return true;
+        }
     }
     return false;
 }

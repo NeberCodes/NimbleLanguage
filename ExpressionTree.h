@@ -1,6 +1,6 @@
 /* 
  * File:   ExpressionTree.h
- * Author: danielrigby
+ * Author: Daniel Rigby
  *
  * Created on December 23, 2014, 9:12 AM
  */
@@ -10,7 +10,8 @@
 
 #include "ExpressionNode.h"
 
-class ExpressionTree {
+class ExpressionTree 
+{
 public:
     ExpressionTree();
     ExpressionTree(ExpressionNode*);

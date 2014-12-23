@@ -10,11 +10,9 @@
 
 #include <string>
 #include <iostream>
+#include "ParsingConstants.h"
 
 using namespace std;
-
-const int INT = 0, DOUBLE = 1,   // Values representing two kinds of nodes.
-                  STRING = 2, SYMBOL = 3;
 
 class ExpressionNode 
 {  // A node in an expression tree.
@@ -49,6 +47,7 @@ public:
     bool isBrace();
  }; // end ExpNode
 
+void print(ExpressionNode*);
+
 #endif	/* EXPRESSIONNODE_H */
 
-void print(ExpressionNode*);
