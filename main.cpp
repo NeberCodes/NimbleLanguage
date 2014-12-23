@@ -6,8 +6,8 @@
  */
 
 #include <iostream>
-#include "ExpressionNode.h"
 #include "ExpressionTree.h"
+#include "ParseTree.h"
 
 using namespace std;
 
@@ -36,17 +36,35 @@ int main(int argc, char** argv)
     expNode[6] = new ExpressionNode(')');
     expTree->insertLeft(expNode[4], expNode[6]);
     
+    //Test Parse Tree with Expression print("Hello World");
+    ParseTree* parseTree = new ParseTree();
+    ParseNode* parseNode[7];
+    parseNode[0] = new ParseNode("print");
+    parseNode[1] = new ParseNode('(');
+    parseNode[2] = new ParseNode('\"');
+    parseNode[3] = new ParseNode("Hello World");
+    parseNode[4] = new ParseNode('\"');
+    parseNode[5] = new ParseNode(')');
+    parseNode[6] = new ParseNode(';');
+    
+    parseTree->setRoot(parseNode[0]);
+    //use for loop to put parse nodes into parse tree as it's simply adding
+    //all the nodes to the left leaf
+    for(int i = 0; i < 6; i++)
+    {
+        parseTree->insertLeft(parseNode[i], parseNode[i+1]);
+    }
     
 
-    cout<<"Hello World"<<endl;
+    cout<<"Nimble Compiler v0.1"<<endl;
     
-    cout<<"Print postfix of Expression Tree:"<<endl;
+    cout<<"Print in order of Expression Tree:"<<endl;
     expTree->printInOrder();
-//    cout<<"Expression Nodes."<<endl;
-//    for(int i = 0; i < 7; i++)
-//    {
-//        print(expNode[i]);
-//    }
-//    return 0;
+    cout<<endl;
+    
+    cout<<"Print in order of Parse Tree:"<<endl;
+    parseTree->printInOrder();
+    cout<<endl;
+    
 }
 
