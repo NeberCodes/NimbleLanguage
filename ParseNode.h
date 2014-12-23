@@ -28,6 +28,7 @@ private:
     char symbol;         // The operator in a node of type OPERATOR.
     ParseNode *left;   // Pointers to subtrees,
     ParseNode *right;  //     in a node of type OPERATOR.
+    ParseNode *branch;
 public:
     ParseNode(string);
     ~ParseNode();
@@ -36,6 +37,8 @@ public:
     ParseNode(char);
     ParseNode* getLeft();
     ParseNode* getRight();
+    ParseNode* getBranch();
+    void setBranch(ParseNode*);
     
     void setLeft(ParseNode*);
     
@@ -47,6 +50,7 @@ public:
     char getSymbol();
     int getType();
     bool isBrace();
+    bool isNotOperator();
  }; // end ExpNode
 
 void print(ParseNode*);
