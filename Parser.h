@@ -19,12 +19,15 @@ class Parser
 {
 public:
     Parser();
+    Parser(string);
     ~Parser();
     void loadData(string);
     ParseTree* parse();
     ParseTree* parse(string);
 private:
     string data;
+    ParseTree* parseTree;
+    ParseTree* lineCount;
 };
 
 #endif	/* PARSER_H */
