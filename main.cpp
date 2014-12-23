@@ -16,6 +16,8 @@ using namespace std;
  */
 int main(int argc, char** argv) 
 {
+    //Test Expression Node and Expression Tree
+    //Expression (1+2*3.50)
     ExpressionNode* expNode[10];
     ExpressionTree* expTree = new ExpressionTree();
     expNode[0] = new ExpressionNode('(');
@@ -33,7 +35,9 @@ int main(int argc, char** argv)
     expTree->insertRight(expNode[4], expNode[5]);
     expNode[6] = new ExpressionNode(')');
     expTree->insertLeft(expNode[4], expNode[6]);
-    //(1+2*3.50)
+    
+    
+
     cout<<"Hello World"<<endl;
     
     cout<<"Print postfix of Expression Tree:"<<endl;
