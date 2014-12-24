@@ -27,7 +27,7 @@ Parser::Parser(string newData)
 Parser::~Parser()
 {
     data = '\0';
-    delete block;;
+    delete block;
 }
 void Parser::loadData(string newData)
 {
@@ -43,85 +43,29 @@ ParseBlock* Parser::parse()
     
     int parseCount = 0;
     string* curString = new string("");
-    //Count Number of lines, number of parse elements
-//    for(int i = 0; i < data.length(); i++)
-//    {
-//        char cur = data.at(i);
-//        //check for delimiter and start string again if found
-//        for(int j = 0; j < DELIMITERS_LENGTH; j++)
-//        {
-//            if(cur == DELIMITERS[j])
-//            {
-//                if(curString->length() > 0)
-//                    parseCount+= 2;
-//                else
-//                    parseCount++;
-//                curString = new string("");
-//                continue;
-//            }     
-//        }
-//        //check for operator
-//        //Handle operators by storing numbers in separate nodes then joining
-//        //them together once it reaches next symbol
-//        for(int j = 0; j < OPERATORS_LENGTH; j++)
-//        {
-//            if(cur == OPERATORS[j])
-//            {
-//                if(curString->length() > 0)
-//                    parseCount+= 2;
-//                else
-//                    parseCount++;
-//                //curString = new string("");
-//                *curString = "";
-//                continue;
-//            }     
-//        }
-//            //check for operator
-//        for(int j = 0; j < SYMBOLS_LENGTH; j++)
-//        {
-//            if(cur == SYMBOLS[j])
-//            {
-//                if(curString->length() > 0)
-//                    parseCount+= 2;
-//                else
-//                    parseCount++;
-//                curString =  new string("");
-//                continue;
-//            }     
-//        }
-//        if(cur == ' ')
-//        {
-//            if(block->getNode()->getSymbol() != '\"')
-//            {
-//                if(curString->length() > 0)
-//                    parseCount+= 2;
-//                else
-//                    parseCount++;
-//                *curString =  "";
-//                continue;
-//            }
-//        }
-//        //encounter new line just prevent code from appending the newline
-//        if(cur == '\n')
-//            continue;
-//        //continue appending characters to string as no checks were hit
-//        char appendString[1] = {cur};
-//        //*curString += appendString;
-//        
-//    }
     curString = new string("");
+    int count = 1;
+    char cur = 0, prev = 0;
     //Parse string data into parse tree
-    for(int i = 0, count = 1; i < data.length(); i++)
+    for(int i = 0; i < data.length(); i++)
     {
         bool doContinue = false;
-        char cur = data.at(i);
+        cur = data.at(i);
+        //check for brackets and start string again if found
+        for(int j = 0; j < BRACKETS_LENGTH; j++)
+        {
+            if(cur == BRACKETS[j])
+            {
+                doContinue = block->handleElement(cur, &curString, count, false);
+                break;
+            }     
+        }
         //check for delimiter and start string again if found
         for(int j = 0; j < DELIMITERS_LENGTH; j++)
         {
             if(cur == DELIMITERS[j])
             {
-                cout<<"Delimiter"<<endl;
-                doContinue = block->handleElement(cur, curString, count, false);
+                doContinue = block->handleElement(cur, &curString, count, false);
                 break;
             }     
         }
@@ -131,19 +75,21 @@ ParseBlock* Parser::parse()
             continue;
         }
         //check for operator
-        for(int j = 0; j < OPERATORS_LENGTH; j++)
+        if(!(prev == '+' || prev == '-') && !(cur == '+' || cur == '-'))
         {
-            if(cur == OPERATORS[j])
+            for(int j = 0; j < OPERATORS_LENGTH; j++)
             {
-                cout<<"Operator"<<endl;
-                doContinue = block->handleElement(cur, curString, count, true);
-                break;
-            }     
-        }
-        if(doContinue)
-        {
-            doContinue = false;
-            continue;
+                if(cur == OPERATORS[j])
+                {
+                    doContinue = block->handleElement(cur, &curString, count, false);
+                    break;
+                }     
+            }
+            if(doContinue)
+            {
+                doContinue = false;
+                continue;
+            }
         }
         
         //check for symbols
@@ -151,8 +97,7 @@ ParseBlock* Parser::parse()
         {
             if(cur == SYMBOLS[j])
             {
-                cout<<"Symbol "<<cur<<endl;
-                doContinue = block->handleElement(cur, curString, count, false);
+                doContinue = block->handleElement(cur, &curString, count, false);
                 break;
             }     
         }
@@ -166,9 +111,7 @@ ParseBlock* Parser::parse()
         {
             if(block->getNode()->getSymbol() != '"')
             {
-                cout<<"Whitespace"<<endl;
-                block->handleElement(cur, curString, count, false);
-                //curString = new string("");
+                block->handleElement(cur, &curString, count, false);
                 continue;
             }
         }
@@ -180,15 +123,63 @@ ParseBlock* Parser::parse()
             continue;
         }
         //continue appending characters to string as no checks were hit
-        char appendString[1] = {cur};
-        cout<<"CurString: "<<*curString<<endl;
+        char appendString[2] = {cur, '\0'};
         *curString += appendString;
-
+        if((i + 1) < data.length())
+        {
+            if(isToken(data.at(i+1)))
+            {
+                block->handleElement(0, &curString, count, false);
+            }
+        }
+        prev = cur;
     }
+    if(!curString->empty())
+    {
+        block->handleElement(0, &curString, count, true);
+    }
+    
     return block;
 }
 ParseBlock* Parser::parse(string newData)
 {
 
     return block;
+}
+
+bool Parser::isToken(char c)
+{
+    //check for brackets and start string again if found
+        for(int j = 0; j < BRACKETS_LENGTH; j++)
+        {
+            if(c == BRACKETS[j])
+            return true;    
+        }
+        //check for delimiter and start string again if found
+        for(int j = 0; j < DELIMITERS_LENGTH; j++)
+        {
+            if(c == DELIMITERS[j])
+            return true;  
+        }
+        //check for operator
+        for(int j = 0; j < OPERATORS_LENGTH; j++)
+        {
+            if(c == OPERATORS[j])
+                return true;
+        }
+        //check for symbols
+        for(int j = 0; j < SYMBOLS_LENGTH; j++)
+        {
+            if(c == SYMBOLS[j])
+                return true;
+        }
+        
+        if(c == ' ')
+        {
+            if(block->getNode()->getSymbol() != '"')
+            {
+                return true;
+            }
+        }
+        return false;
 }
