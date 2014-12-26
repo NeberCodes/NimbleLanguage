@@ -81,6 +81,6 @@ int main(int argc, char** argv)
     delete parser;
     delete parseTree;
     delete expTree;
-    
+    ;
 }
 
