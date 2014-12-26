@@ -40,7 +40,7 @@ void Parser::loadData(string newData)
 ParseBlock* Parser::parse()
 {
     block = new ParseBlock();
-    
+    int brackets = NONE;
     int parseCount = 0;
     string* curString = new string("");
     curString = new string("");
@@ -49,23 +49,35 @@ ParseBlock* Parser::parse()
     //Parse string data into parse tree
     for(int i = 0; i < data.length(); i++)
     {
+        //brackets = NONE;
         bool doContinue = false;
         cur = data.at(i);
         //check for brackets and start string again if found
+        //for brackets do nothing but store status of brackets in variable
         for(int j = 0; j < BRACKETS_LENGTH; j++)
         {
             if(cur == BRACKETS[j])
             {
-                doContinue = block->handleElement(cur, &curString, count, false);
+                if(cur == ')')
+                    brackets = CLOSED_BRACKETS;
+                else
+                    brackets = OPEN_BRACKETS;
+                doContinue = true;
+                //doContinue = block->handleElement(cur, &curString, count, false, brackets);
                 break;
             }     
+        }
+        if(doContinue)
+        {
+            doContinue = false;
+            continue;
         }
         //check for delimiter and start string again if found
         for(int j = 0; j < DELIMITERS_LENGTH; j++)
         {
             if(cur == DELIMITERS[j])
             {
-                doContinue = block->handleElement(cur, &curString, count, false);
+                doContinue = block->handleElement(cur, &curString, count, false, brackets);
                 break;
             }     
         }
@@ -81,7 +93,7 @@ ParseBlock* Parser::parse()
             {
                 if(cur == OPERATORS[j])
                 {
-                    doContinue = block->handleElement(cur, &curString, count, false);
+                    doContinue = block->handleElement(cur, &curString, count, false, brackets);
                     break;
                 }     
             }
@@ -97,7 +109,7 @@ ParseBlock* Parser::parse()
         {
             if(cur == SYMBOLS[j])
             {
-                doContinue = block->handleElement(cur, &curString, count, false);
+                doContinue = block->handleElement(cur, &curString, count, false, brackets);
                 break;
             }     
         }
@@ -111,7 +123,7 @@ ParseBlock* Parser::parse()
         {
             if(block->getNode()->getSymbol() != '"')
             {
-                block->handleElement(cur, &curString, count, false);
+                block->handleElement(cur, &curString, count, false, brackets);
                 continue;
             }
         }
@@ -129,14 +141,14 @@ ParseBlock* Parser::parse()
         {
             if(isToken(data.at(i+1)))
             {
-                block->handleElement(0, &curString, count, false);
+                block->handleElement(0, &curString, count, false, brackets);
             }
         }
         prev = cur;
     }
     if(!curString->empty())
     {
-        block->handleElement(0, &curString, count, true);
+        block->handleElement(0, &curString, count, true, brackets);
     }
     
     return block;
