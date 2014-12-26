@@ -8,6 +8,7 @@
 #include <iostream>
 #include "ExpressionTree.h"
 #include "ParseTree.h"
+#include "Parser.h"
 
 using namespace std;
 
@@ -23,7 +24,6 @@ int main(int argc, char** argv)
     expNode[0] = new ExpressionNode('(');
     expTree->setRoot(expNode[0]);
     expNode[1] = new ExpressionNode(1);
-    
     expNode[2] = new ExpressionNode('+');
     expTree->insertLeft(expNode[0], expNode[2]);
     expTree->insertRight(expNode[0], expNode[1]);
@@ -48,6 +48,8 @@ int main(int argc, char** argv)
     parseNode[6] = new ParseNode(';');
     
     parseTree->setRoot(parseNode[0]);
+    
+    
     //use for loop to put parse nodes into parse tree as it's simply adding
     //all the nodes to the left leaf
     for(int i = 0; i < 6; i++)
@@ -65,6 +67,20 @@ int main(int argc, char** argv)
     cout<<"Print in order of Parse Tree:"<<endl;
     parseTree->printInOrder();
     cout<<endl;
+    
+    cout<<"Testing parsing of code: "<<endl;
+    //Test Parser
+    //Parser* parser = new Parser("print(\"Hello World\");");
+    string str = "(1*-2)^(3)";
+    cout<<"Parsing: "<<str<<endl;
+    Parser* parser = new Parser(str);
+    ParseBlock* parseBlock = parser->parse();
+    parseBlock->getParseTree()->printPostfix();
+    cout<<endl;
+    parseBlock->getParseTree()->printInOrder();
+    delete parser;
+    delete parseTree;
+    delete expTree;
     
 }
 
