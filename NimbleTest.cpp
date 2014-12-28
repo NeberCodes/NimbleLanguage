@@ -9,8 +9,8 @@
 
 NimbleTest::NimbleTest()
 {
-    nimbleFunction = 0;
-    syntaxTree = 0;
+    nimbleFunction = new NimbleFunction();
+    syntaxTree = new SyntaxTree();
 }
 NimbleTest::~NimbleTest()
 {
