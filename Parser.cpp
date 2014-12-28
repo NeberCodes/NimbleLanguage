@@ -87,7 +87,11 @@ ParseBlock* Parser::parse()
             continue;
         }
         //check for operator
-        if(!(prev == '+' || prev == '-') && !(cur == '+' || cur == '-'))
+        if(i > 0)
+        {
+            prev = data.at(i-1);
+        }
+        if(!(Parser::isType(prev, OPERATORS, OPERATORS_LENGTH) && (cur == '+' || cur == '-')))
         {
             for(int j = 0; j < OPERATORS_LENGTH; j++)
             {
@@ -102,6 +106,10 @@ ParseBlock* Parser::parse()
                 doContinue = false;
                 continue;
             }
+        }
+        else
+        {
+            cout<<"Signed fail: "<<prev<< " "<<cur<<endl;
         }
         
         //check for symbols
@@ -141,10 +149,12 @@ ParseBlock* Parser::parse()
         {
             if(isToken(data.at(i+1)))
             {
-                block->handleElement(0, &curString, count, false, brackets);
+                if(data.at(i+1) == ')')
+                    block->handleElement(0, &curString, count, true, brackets);
+                else
+                    block->handleElement(0, &curString, count, false, brackets);
             }
         }
-        prev = cur;
     }
     if(!curString->empty())
     {
@@ -155,8 +165,8 @@ ParseBlock* Parser::parse()
 }
 ParseBlock* Parser::parse(string newData)
 {
-
-    return block;
+    data = newData;
+    return parse();
 }
 
 bool Parser::isToken(char c)
@@ -194,4 +204,14 @@ bool Parser::isToken(char c)
             }
         }
         return false;
+}
+
+bool Parser::isType(char c, const char type[], const int length)
+{
+    for(int i = 0; i < length; i++)
+    {
+        if(c == type[i])
+            return true;
+    }
+    return false;
 }

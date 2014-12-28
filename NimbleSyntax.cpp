@@ -11,6 +11,7 @@
 using namespace std;
 
 map<int, string> NimbleSyntax::types;
+int NimbleSyntax::types_size = 0;
 
 NimbleSyntax::NimbleSyntax()
 {

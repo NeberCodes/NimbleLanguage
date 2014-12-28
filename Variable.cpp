@@ -12,21 +12,18 @@ int Variable::types_size;
 
 Variable::Variable()
 {
-    type = 0;
     name = "";
 }
 
-Variable::Variable(int newType, string newName)
+Variable::Variable(string newName)
 {
-    type = newType;
     name = newName;
 }
 Variable::~Variable()
 {
 }
-void Variable::setVariable(int newType, string newName)
+void Variable::setVariable(string newName)
 {
-    type = newType;
     name = newName;
 }
 int Variable::addType(string newName)
@@ -43,17 +40,28 @@ int Variable::getType(string searchName)
     }
     return 0;
 }
-int Variable::getType()
+
+string Variable::getType(int theType)
 {
-    return type;
+    for(map<int, string>::iterator iter = Variable::types.begin(); iter != Variable::types.end(); iter++)
+    {
+        if(iter->first == theType)
+            return iter->second;
+    }
+    return 0;
+}
+
+list<int> Variable::getTypes()
+{
+    return myTypes;
 }
 string Variable::getName()
 {
     return name;
 }
-void Variable::setType(int newType)
+void Variable::addType(int newType)
 {
-    type = newType;
+    myTypes.push_back(newType);
 }
 void Variable::setName(string newName)
 {

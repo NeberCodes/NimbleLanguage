@@ -7,8 +7,8 @@
 
 #include <iostream>
 #include "ExpressionTree.h"
-#include "ParseTree.h"
 #include "Parser.h"
+#include "Nimble.h"
 
 using namespace std;
 
@@ -57,9 +57,10 @@ int main(int argc, char** argv)
         parseTree->insertLeft(parseNode[i], parseNode[i+1]);
     }
     
-
+    Nimble* nimble = new Nimble();
     cout<<"Nimble Compiler v0.1"<<endl;
-    
+    cout<<"Testing Nimble libraries: "<<endl;
+    nimble->test();
     cout<<"Print in order of Expression Tree:"<<endl;
     expTree->printInOrder();
     cout<<endl;
@@ -71,14 +72,14 @@ int main(int argc, char** argv)
     cout<<"Testing parsing of code: "<<endl;
     //Test Parser
     //Parser* parser = new Parser("print(\"Hello World\");");
-    string str = "(1*-2)^(3)";
+    string str = "(1*-2)^(3)+(4)+(5)";
     cout<<"Parsing: "<<str<<endl;
-    Parser* parser = new Parser(str);
-    ParseBlock* parseBlock = parser->parse();
+    
+    ParseBlock* parseBlock = nimble->getParser()->parse(str);
     parseBlock->getParseTree()->printPostfix();
     cout<<endl;
     parseBlock->getParseTree()->printInOrder();
-    delete parser;
+    delete nimble;
     delete parseTree;
     delete expTree;
 }

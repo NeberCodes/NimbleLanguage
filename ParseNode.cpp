@@ -1,6 +1,14 @@
-#include "ExpressionNode.h"
+/* 
+ * File:   ParseNode.cpp
+ * Author: Daniel Rigby
+ * 
+ * Created on December 23, 2014, 11:29 AM
+ */
 
-ExpressionNode::ExpressionNode(string newString ) 
+#include "ParseNode.h"
+#include "Debug.h"
+
+ParseNode::ParseNode(string newString ) 
 {
     // Constructor for making a node of type NUMBER.
     type = STRING;
@@ -9,7 +17,7 @@ ExpressionNode::ExpressionNode(string newString )
     right = 0;
 }
 
-ExpressionNode::ExpressionNode(int newNumber ) 
+ParseNode::ParseNode(int newNumber ) 
 {
   // Constructor for making a node of type NUMBER.
     type = INT;
@@ -18,7 +26,7 @@ ExpressionNode::ExpressionNode(int newNumber )
     right = 0;
 }
 
-ExpressionNode::ExpressionNode(double newNumber ) 
+ParseNode::ParseNode(double newNumber ) 
 {
   // Constructor for making a node of type DOUBLE.
     type = DOUBLE;
@@ -27,7 +35,7 @@ ExpressionNode::ExpressionNode(double newNumber )
     right = 0;
 }
 
-ExpressionNode::ExpressionNode( char newSymbol ) {
+ParseNode::ParseNode( char newSymbol ) {
     // Constructor for making a node of type OPERATOR.
     type = SYMBOL;
     symbol = newSymbol;
@@ -35,54 +43,54 @@ ExpressionNode::ExpressionNode( char newSymbol ) {
     right = 0;
 }
 
-ExpressionNode* ExpressionNode::getLeft()
+ParseNode* ParseNode::getLeft()
 {
     return left;
 }
 
-ExpressionNode* ExpressionNode::getRight()
+ParseNode* ParseNode::getRight()
 {
     return right;
 }
 
-void ExpressionNode::setLeft(ExpressionNode* newLeft)
+void ParseNode::setLeft(ParseNode* newLeft)
 {
     left = newLeft;
     left->setBranch(this);
 }
 
-void ExpressionNode::setRight(ExpressionNode* newRight)
+void ParseNode::setRight(ParseNode* newRight)
 {
     right = newRight;
     right->setBranch(this);
 }
 
-double ExpressionNode::getDouble()
+double ParseNode::getDouble()
 {
     return theDouble;
 }
 
-int ExpressionNode::getInt()
+int ParseNode::getInt()
 {
     return theInt;
 }
 
-string ExpressionNode::getString()
+string ParseNode::getString()
 {
     return str;
 }
 
-char ExpressionNode::getSymbol()
+char ParseNode::getSymbol()
 {
     return symbol;
 }
 
-int ExpressionNode::getType()
+int ParseNode::getType()
 {
     return type;
 }
 
-void print(ExpressionNode* expNode)
+void print(ParseNode* expNode)
 {
     switch(expNode->getType())
     {
@@ -101,13 +109,14 @@ void print(ExpressionNode* expNode)
     }
 }
 
-ExpressionNode::~ExpressionNode()
+ParseNode::~ParseNode()
 {
     left = 0;
     right = 0;
+    branch = 0;
 }
 
-bool ExpressionNode::isBrace()
+bool ParseNode::isBrace()
 {
     for(int i = 0; i < SYMBOLS_LENGTH; i++)
     {
@@ -119,7 +128,7 @@ bool ExpressionNode::isBrace()
     return false;
 }
 
-bool ExpressionNode::isNotOperator()
+bool ParseNode::isNotOperator()
 {
     if(type != SYMBOL)
         return true;
@@ -134,7 +143,7 @@ bool ExpressionNode::isNotOperator()
     return true;
 }
 
-bool ExpressionNode::isType(const char theType[], const int length)
+bool ParseNode::isType(const char theType[], const int length)
 {
     for(int i = 0; i < length; i++)
     {
@@ -144,11 +153,11 @@ bool ExpressionNode::isType(const char theType[], const int length)
     return false;
 }
 
-ExpressionNode* ExpressionNode::getBranch()
+ParseNode* ParseNode::getBranch()
 {
     return branch;
 }
-void ExpressionNode::setBranch(ExpressionNode* newBranch)
+void ParseNode::setBranch(ParseNode* newBranch)
 {
     branch = newBranch;
 }

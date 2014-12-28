@@ -17,17 +17,27 @@ ParseBlock::ParseBlock()
     tempNode = 0;
     tempNodeTwo = 0;
     curCountNode = 0;
+    lastNode = 0;
+    lastCountNode = 0;
+    signedNode = 0;
+    signedCountNode = 0;
+    bottomNode = 0;
+    bottomCountNode = 0;
+    isFirst= true;
+    isNil = true;
     parseTree = new ParseTree();
     countTree = new ParseTree();
 }
 ParseBlock::~ParseBlock()
 {
-    delete countNode;
-    delete newNode;
-    delete tempNode;
-    delete tempNodeTwo;
-    delete parseTree;
-    delete countTree;
+//    delete countNode;
+//    delete newNode;
+//    delete tempNode;
+//    delete tempNodeTwo;
+//    delete parseTree;
+//    delete countTree;
+//    delete lastNode;
+//    delete lastCountNode;
 }
 
 ParseNode* ParseBlock::getNode()
@@ -90,50 +100,155 @@ void ParseBlock::setCurCountNode(ParseNode* newCurCountNode)
 
 //handles when a new element is encountered when parsing and adds it to the
 //parse tree
-bool ParseBlock::handleElement(char cur, string* *curString, int count, bool isOperator)
+bool ParseBlock::handleElement(char cur, string* *curString, int count, bool lastElem, int &brackets)
 {
     countNode = new ParseNode(count);
     //keep track of numbers and strings if they exist and insert them
+    cout<<"1"<<endl;
     if(!(*curString)->empty())
     {
         if(isNumber(**curString))
         {
-            if(tempNode != 0)
-            {
-                parseTree->insertRight(node, tempNode);
-                countTree->insertRight(curCountNode, tempNodeTwo);
-            }
             tempNode = new ParseNode(atoi((*curString)->c_str()));
             tempNodeTwo = new ParseNode(count);
         }
         else
         {
-            if(tempNode != 0)
-            {
-                parseTree->insertRight(node, tempNode);
-                countTree->insertRight(curCountNode, tempNodeTwo);
-            }
             tempNode= new ParseNode(**curString);  
             tempNodeTwo = new ParseNode(count); 
         }
     }
-    if(!isOperator && !(*curString)->empty())
+    cout<<"2"<<endl;
+    if(cur != 0)
     {
-        parseTree->insertLeft(node, tempNode);
-        countTree->insertLeft(curCountNode, tempNodeTwo);
-        node = tempNode;
-        curCountNode = tempNodeTwo;
-        tempNode = 0;
-        tempNodeTwo = 0;
-        
+        newNode = new ParseNode(cur);
+        cout<<"Adding new symbol: "<<cur<<endl;
+        if(node != 0)
+        {
+            if(brackets)
+            {
+                //if isFirst is true then add to top of tree
+                //else add to right of current node
+                if(!isFirst)
+                {
+                    isFirst = true;
+                }
+                else
+                {
+                    cout<<"Set bottom node"<<endl;
+                    isFirst = false;
+                    brackets = NONE;
+                    bottomNode = newNode;
+                    bottomCountNode = countNode;
+                }
+                if(isFirst)
+                {
+                    cout<<"Inserting as new root(brackets): "<<cur<<endl;
+                    parseTree->setRoot(newNode);
+                    countTree->setRoot(countNode);
+                    cout<<"Fixing up old to left: ";
+                    print(node);
+                    cout<<endl;
+                    parseTree->insertLeft(newNode, node);
+                    countTree->insertLeft(countNode, curCountNode);
+                }
+                else
+                {
+                    cout<<"Adding to the right: "<<cur<<endl;
+                    parseTree->insertRight(node, newNode);
+                    countTree->insertRight(curCountNode, countNode);
+                }
+                node = newNode;
+                curCountNode = countNode;
+            }
+            else
+            {
+                cout<<"Adding to the left: "<<cur<<endl;
+                parseTree->insertLeft(newNode, node);
+                countTree->insertLeft(countNode, curCountNode);
+                parseTree->setRoot(newNode);
+                countTree->setRoot(countNode);
+                if(isFirst)
+                {
+                    cout<<"DOES THIS EVER HAPPEN"<<endl;
+                    bottomNode = node;
+                    bottomCountNode = curCountNode;
+                }
+                node = newNode;
+                curCountNode = countNode;
+            }
+        }
+        else
+        {
+            parseTree->insertLeft(node, newNode);
+            countTree->insertLeft(curCountNode, countNode);
+            node = newNode;
+            curCountNode = countNode;
+            bottomNode = node;
+            bottomCountNode = curCountNode;
+        }
+        if(!node->isNotOperator())
+        {
+            isNil = false;
+        }
+        else
+        {
+            isNil = true;
+        }
     }
-    newNode = new ParseNode(cur);
-    parseTree->insertLeft(node, newNode);
-    countTree->insertLeft(curCountNode, countNode);
-    node = newNode;
-    curCountNode = countNode;
-    //when symbol is not an operator add the stored node to the right
-
+    cout<<"3"<<endl;
+    if(node != 0)
+    {
+        //if((!isNil || lastElem) && tempNode != 0)
+        if( tempNode != 0)
+        {
+            //check if it's a signed number if so add to the left
+            cout<<"Adding: ";
+            print(tempNode);
+            cout<<endl;
+            if((node->getRight()) == 0 && !isFirst)
+            {
+                cout<<"Adding to the right"<<endl;
+                parseTree->insertRight(node, tempNode);
+                countTree->insertRight(curCountNode, tempNodeTwo);
+                tempNode = 0;
+                tempNodeTwo = 0;
+            }
+            else
+            {
+                if(bottomNode != 0)
+                {
+                    cout<<"Adding first to left: "<<endl;
+                    print(bottomNode);
+                    cout<<endl;
+                    parseTree->insertLeft(bottomNode, tempNode);
+                    countTree->insertLeft(bottomCountNode, tempNodeTwo);
+                    bottomNode = 0;
+                    bottomCountNode = 0;
+                    isFirst = false;
+                    tempNode = 0;
+                    tempNodeTwo = 0;
+                }
+                else if(lastElem)
+                {
+                    cout<<"Adding to the right"<<endl;
+                    parseTree->insertRight(node, tempNode);
+                    countTree->insertRight(curCountNode, tempNodeTwo);
+                    tempNode = 0;
+                    tempNodeTwo = 0;
+                }
+            }
+        }
+    }
+    else
+    {
+        if(lastElem)
+        {
+            parseTree->insertRight(node, tempNode);
+            countTree->insertRight(curCountNode, tempNodeTwo);
+        }
+    }
+    
     *curString = new string("");
     return true;
 }

@@ -1,26 +1,26 @@
 /* 
- * File:   ExpressionTree.cpp
+ * File:   ParseTree.cpp
  * Author: danielrigby
  * 
- * Created on December 23, 2014, 9:12 AM
+ * Created on December 23, 2014, 11:19 AM
  */
 
-#include "ExpressionTree.h"
+#include "ParseTree.h"
 
-ExpressionTree::ExpressionTree()
+ParseTree::ParseTree()
 {
     root = 0;
 }
-ExpressionTree::ExpressionTree(ExpressionNode* newRoot)
+ParseTree::ParseTree(ParseNode* newRoot)
 {
     root = newRoot;
 }
-ExpressionTree::~ExpressionTree()
+ParseTree::~ParseTree()
 {
     delete root;
 }
 
-void ExpressionTree::deleteNode(ExpressionNode* node)
+void ParseTree::deleteNode(ParseNode* node)
 {
     if(node->getLeft() != 0)
     {
@@ -32,10 +32,11 @@ void ExpressionTree::deleteNode(ExpressionNode* node)
     }
     delete node;
 }
-ExpressionNode* ExpressionTree::search(ExpressionNode* expNode, int theInt)
+
+ParseNode* ParseTree::search(ParseNode* expNode, int theInt)
 {
-    ExpressionNode* returnNode = 0;
-    ExpressionNode* node;
+    ParseNode* returnNode = 0;
+    ParseNode* node;
     if(expNode->getInt() == theInt)
     {
         return expNode;
@@ -59,10 +60,10 @@ ExpressionNode* ExpressionTree::search(ExpressionNode* expNode, int theInt)
     return 0;
 }
 
-ExpressionNode* ExpressionTree::search(ExpressionNode* expNode, double theDouble)
+ParseNode* ParseTree::search(ParseNode* expNode, double theDouble)
 {
-    ExpressionNode* returnNode = 0;
-    ExpressionNode* node;
+    ParseNode* returnNode = 0;
+    ParseNode* node;
     if(expNode->getDouble() == theDouble)
     {
         return expNode;
@@ -86,10 +87,10 @@ ExpressionNode* ExpressionTree::search(ExpressionNode* expNode, double theDouble
     return 0;
 }
 
-ExpressionNode* ExpressionTree::search(ExpressionNode* expNode, string theString)
+ParseNode* ParseTree::search(ParseNode* expNode, string theString)
 {
-    ExpressionNode* returnNode = 0;
-    ExpressionNode* node;
+    ParseNode* returnNode = 0;
+    ParseNode* node;
     if(expNode->getString() == theString)
     {
         return expNode;
@@ -112,10 +113,10 @@ ExpressionNode* ExpressionTree::search(ExpressionNode* expNode, string theString
     }
     return 0;
 }
-ExpressionNode* ExpressionTree::search(ExpressionNode* expNode, char theSymbol)
+ParseNode* ParseTree::search(ParseNode* expNode, char theSymbol)
 {
-    ExpressionNode* returnNode = 0;
-    ExpressionNode* node;
+    ParseNode* returnNode = 0;
+    ParseNode* node;
     if(expNode->getSymbol() == theSymbol)
     {
         return expNode;
@@ -138,14 +139,14 @@ ExpressionNode* ExpressionTree::search(ExpressionNode* expNode, char theSymbol)
     }
     return 0;
 }
-void ExpressionTree::insertLeft(ExpressionNode* theNode, ExpressionNode* newNode)
+void ParseTree::insertLeft(ParseNode* theNode, ParseNode* newNode)
 {
     if(root == 0)
         root = newNode;
     else
         theNode->setLeft(newNode);
 }
-void ExpressionTree::insertRight(ExpressionNode* theNode, ExpressionNode* newNode)
+void ParseTree::insertRight(ParseNode* theNode, ParseNode* newNode)
 {
     if(root == 0)
         root = newNode;
@@ -153,37 +154,27 @@ void ExpressionTree::insertRight(ExpressionNode* theNode, ExpressionNode* newNod
         theNode->setRight(newNode);
 }
 
-void ExpressionTree::setRoot(ExpressionNode* newRoot)
+void ParseTree::setRoot(ParseNode* newRoot)
 {
     root = newRoot;
 }
-ExpressionNode* ExpressionTree::getRoot()
+ParseNode* ParseTree::getRoot()
 {
     return root;
 }
 
-void ExpressionTree::printInOrder(ExpressionNode* theNode)
+void ParseTree::printInOrder(ParseNode* theNode)
 {
     if(theNode != 0)
     {
-        if(theNode->isNotOperator())
-        {
+            printInOrder(theNode->getLeft());
             print(theNode);
             printInOrder(theNode->getRight());
-        }
-        else
-        {
-            printInOrder(theNode->getRight());
-            print(theNode);
             
-        }
-        
-        printPrefix(theNode->getLeft());
-        
     }
 }
 
-void ExpressionTree::printPostfix(ExpressionNode* theNode)
+void ParseTree::printPostfix(ParseNode* theNode)
 {
     if(theNode != 0)
     { 
@@ -193,22 +184,23 @@ void ExpressionTree::printPostfix(ExpressionNode* theNode)
     }
 }
 
-void ExpressionTree::printPrefix(ExpressionNode* theNode)
+void ParseTree::printPrefix(ParseNode* theNode)
 {
     if(theNode != 0)
     {
         print(theNode);
-        printPostfix(theNode->getRight());
         printPrefix(theNode->getLeft());
+        printPostfix(theNode->getRight());
+        
     }
 }
 
-void ExpressionTree::printPostfix()
+void ParseTree::printPostfix()
 {
     printPostfix(root);
 }
 
-void ExpressionTree::printInOrder()
+void ParseTree::printInOrder()
 {
     printInOrder(root);
 }
