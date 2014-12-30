@@ -49,32 +49,31 @@ int SyntaxParseBlock::getType(ParseNode* node)
 
 NimbleSyntax* SyntaxParseBlock::newSyntax(int newType, ParseNode* node)
 {
+    NimbleSyntax* result = 0;
     if(node->getType() == STRING)
     {
-        NimbleSyntax* result = new NimbleSyntax(node->getString(), newType);
-        return result;
+        result = new NimbleSyntax(node->getString(), newType);
     }
     else if(node->getType() == INT)
     {
-        NimbleSyntax* result = new NimbleSyntax(node->getInt(), newType);
-        return result;
+        result = new NimbleSyntax(node->getInt(), newType);
     }
     else if(node->getType() == DOUBLE)
     {
-        NimbleSyntax* result = new NimbleSyntax(node->getDouble(), newType);
-        return result;
+        result = new NimbleSyntax(node->getDouble(), newType);
     }
     else if(node->getType() == FLOAT)
     {
-        NimbleSyntax* result = new NimbleSyntax(node->getFloat(), newType);
-        return result;
+        result = new NimbleSyntax(node->getFloat(), newType);
     }
     else if(node->getType() == SYMBOL)
     {
-        NimbleSyntax* result = new NimbleSyntax(node->getSymbol(), newType);
-        return result;
+        result = new NimbleSyntax(node->getSymbol(), newType);
     }
-    return 0;
+    cout<<"Returning new syntax type: "<<result->getType();
+    print(result);
+    cout<<endl;
+    return result;
 }
 void SyntaxParseBlock::addToTree(ParseNode* node)
 {

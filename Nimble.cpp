@@ -12,6 +12,7 @@ Nimble::Nimble()
     parser = new Parser();
     library = new NimbleLibrary();
     nimbleTest = new NimbleTest();
+    initializeSyntax();
     initializeVariables();
     initializeLibraries();
 }
@@ -27,12 +28,16 @@ void Nimble::compile(int argc, char** argv)
 
 void Nimble::initializeSyntax()
 {
-    string arrString[] = {"for", "if", "while", "dowhile", "class", "expression"
-                            ,"call", "declare"};
+    string arrString[] = {"for", "if", "while", "dowhile", "class", "symbol"
+                            ,"call", "declare", "double", "int", "float", "char"};
     for(int i = 0; i < (sizeof(arrString)/ sizeof(*arrString)); i++)
     {
         NimbleSyntax::addType(arrString[i]);
     }
+    FLOAT_TYPE = NimbleSyntax::getType("float");
+    DOUBLE_TYPE = NimbleSyntax::getType("double");
+    INT_TYPE = NimbleSyntax::getType("int");
+    SYMBOL_TYPE = NimbleSyntax::getType("symbol");
 }
 void Nimble::initializeVariables()
 {

@@ -39,6 +39,7 @@ void Parser::loadData(string newData)
 //for each check
 ParseBlock* Parser::parse()
 {
+    bool quoted = false;
     block = new ParseBlock();
     int brackets = NONE;
     int parseCount = 0;
@@ -115,6 +116,14 @@ ParseBlock* Parser::parse()
         //check for symbols
         for(int j = 0; j < SYMBOLS_LENGTH; j++)
         {
+            if(cur == '\"')
+            {
+                if(quoted)
+                    quoted = false;
+                else
+                    quoted = true;
+                break;
+            }
             if(cur == SYMBOLS[j])
             {
                 doContinue = block->handleElement(cur, &curString, count, false, brackets);
@@ -126,22 +135,22 @@ ParseBlock* Parser::parse()
             doContinue = false;
             continue;
         }
-        
         if(cur == ' ')
         {
-            if(block->getNode()->getSymbol() != '"')
+            //have to use bool to check for quotes since strings will include quotes
+            if(!quoted)
             {
                 block->handleElement(cur, &curString, count, false, brackets);
                 continue;
             }
         }
-        
         //encounter new line just prevent code from appending the newline
         if(cur == '\n')
         {
             count++;
             continue;
         }
+        
         //continue appending characters to string as no checks were hit
         char appendString[2] = {cur, '\0'};
         *curString += appendString;
@@ -194,14 +203,6 @@ bool Parser::isToken(char c)
         {
             if(c == SYMBOLS[j])
                 return true;
-        }
-        
-        if(c == ' ')
-        {
-            if(block->getNode()->getSymbol() != '"')
-            {
-                return true;
-            }
         }
         return false;
 }

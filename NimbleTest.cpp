@@ -11,9 +11,11 @@ NimbleTest::NimbleTest()
 {
     nimbleFunction = new NimbleFunction();
     syntaxTree = new SyntaxTree();
+    syntaxParser = new SyntaxParser();
 }
 NimbleTest::~NimbleTest()
 {
+    delete syntaxParser;
     delete nimbleFunction;
     delete syntaxTree;
 }
@@ -22,6 +24,19 @@ void NimbleTest::test()
     cout<<"Nimble Testing."<<endl;
     testFunction();
     testSyntaxTree();
+    testAssemblyInstruction();
+}
+
+void NimbleTest::testAssemblyInstruction()
+{
+    cout<<"Testing Assembly Instruction"<<endl;
+    //Prestatement, First Argument, Second Argument(0 = nothing, 1 = integer, 
+    //2 = variable, 3 = string, 4 = integer/string)
+    AssemblyInstruction::addStatementType("mov", false, 1, 1);
+    AssemblyInstruction::addStatementType("db", true, 4, 0);
+    AssemblyInstruction::addStatementType("inc", true, 2, 0);
+    cout<<"Print all Assembly Statement Types: "<<endl;
+    AssemblyInstruction::printStatements();
 }
 void NimbleTest::testFunction()
 {
@@ -50,10 +65,17 @@ void NimbleTest::testFunction()
 }
 void NimbleTest::testSyntaxTree()
 {
-    NimbleSyntax* syntax= new NimbleSyntax[3];
-    syntax[0].setName("if");
-    syntax[0].setType(NimbleSyntax::getType("int"));
+//    NimbleSyntax* syntax= new NimbleSyntax[3];
+//    syntax[0].setName("if");
+//    syntax[0].setType(NimbleSyntax::getType("int"));
     cout<<"Testing Syntax tree."<<endl;
+    string str = "print(\"Hello World\")";
+    
+    
+    SyntaxParseBlock* parseBlock = syntaxParser->parse(str);
+    cout<<"Printing Syntax tree in order: "<<endl;
+    parseBlock->getTree()->printInOrder();
+    cout<<endl;
     
 }
 

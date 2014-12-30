@@ -8,6 +8,8 @@
 #include "NimbleSyntax.h"
 #include <iostream>
 
+int DOUBLE_TYPE = 0, FLOAT_TYPE = 0, INT_TYPE = 0, SYMBOL_TYPE = 0;
+
 using namespace std;
 
 map<int, string> NimbleSyntax::types;
@@ -29,6 +31,43 @@ NimbleSyntax::NimbleSyntax(string newName, int newType)
     name = newName;
     type = newType;
 }
+
+NimbleSyntax::NimbleSyntax(double newD, int newType)
+{
+    d = newD;
+    left = 0;
+    right = 0;
+    branch = 0;
+    type = newType;
+}
+
+NimbleSyntax::NimbleSyntax(float newF, int newType)
+{
+    f = newF;
+    left = 0;
+    right = 0;
+    branch = 0;
+    type = newType;
+}
+
+NimbleSyntax::NimbleSyntax(int newNumber, int newType)
+{
+    number = newNumber;
+    left = 0;
+    right = 0;
+    branch = 0;
+    type = newType;
+}
+
+NimbleSyntax::NimbleSyntax(char c, int newType)
+{
+    symbol = c;
+    left = 0;
+    right = 0;
+    branch = 0;
+    type = newType;
+}
+
 NimbleSyntax::~NimbleSyntax()
 {
     delete left;
@@ -60,7 +99,7 @@ int NimbleSyntax::getType(string searchName)
             return iter->first;
         }
     }
-    return 0;
+    return -1;
 }
 
 string NimbleSyntax::getType(int searchType)
@@ -102,11 +141,46 @@ void NimbleSyntax::setType(int newType)
 
 void NimbleSyntax::addType(string newType)
 {
-    //NimbleSyntax::types[newType] = NimbleSyntax::types_size;
+    NimbleSyntax::types[NimbleSyntax::types_size] = newType;
+    cout<<"Added Type: "<<newType<<" ["<<NimbleSyntax::types_size<<"] = "<<
+            NimbleSyntax::types[NimbleSyntax::types_size]<<"."<<endl;
     NimbleSyntax::types_size++;
 }
 void print(NimbleSyntax* syntax)
 {
-    cout<<syntax->getName()<<" "<<NimbleSyntax::getType(syntax->getType());
+    int type = syntax->getType();
+    if(type == INT_TYPE)
+        cout<<syntax->getNumber();
+    else if(type == DOUBLE_TYPE)
+        cout<<syntax->getDouble();
+    else if(type == FLOAT_TYPE)
+        cout<<syntax->getFloat();
+    else if(type == SYMBOL_TYPE)
+        cout<<syntax->getSymbol();
+    else
+        cout<<syntax->getName();
 }
 
+void NimbleSyntax::setSymbol(char c)
+{
+    type = SYMBOL_TYPE;
+    symbol = c;
+}
+
+char NimbleSyntax::getSymbol()
+{
+    return symbol;
+}
+
+int NimbleSyntax::getNumber()
+{
+    return number;
+}
+float NimbleSyntax::getFloat()
+{
+    return f;
+}
+double NimbleSyntax::getDouble()
+{
+    return d;
+}

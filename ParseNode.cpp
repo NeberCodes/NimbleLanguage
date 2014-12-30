@@ -65,6 +65,10 @@ void ParseNode::setRight(ParseNode* newRight)
     right->setBranch(this);
 }
 
+void ParseNode::setFloat(float newFloat)
+{
+    theFloat = newFloat;
+}
 double ParseNode::getDouble()
 {
     return theDouble;
@@ -73,6 +77,11 @@ double ParseNode::getDouble()
 int ParseNode::getInt()
 {
     return theInt;
+}
+
+float ParseNode::getFloat()
+{
+    return theFloat;
 }
 
 string ParseNode::getString()
@@ -105,6 +114,9 @@ void print(ParseNode* expNode)
             break;
         case SYMBOL:
             cout<<expNode->getSymbol();
+            break;
+        case FLOAT:
+            cout<<expNode->getFloat();
             break;
     }
 }

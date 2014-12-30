@@ -107,6 +107,26 @@ bool ParseBlock::handleElement(char cur, string* *curString, int count, bool las
     cout<<"1"<<endl;
     if(!(*curString)->empty())
     {
+        //When adding two strings/numbers next to each other
+        if(tempNode != 0)
+        {
+            if(node != 0)
+            {
+                parseTree->setRoot(tempNode);
+                countTree->setRoot(tempNodeTwo);
+                parseTree->insertLeft(tempNode, node);
+                countTree->insertLeft(tempNodeTwo, curCountNode);
+                node = tempNode;
+                curCountNode = tempNodeTwo;
+            }
+            else
+            {
+                parseTree->setRoot(tempNode);
+                countTree->setRoot(tempNodeTwo);
+                node = tempNode;
+                curCountNode = tempNodeTwo;
+            }
+        }
         if(isNumber(**curString))
         {
             tempNode = new ParseNode(atoi((*curString)->c_str()));
@@ -248,7 +268,6 @@ bool ParseBlock::handleElement(char cur, string* *curString, int count, bool las
             countTree->insertRight(curCountNode, tempNodeTwo);
         }
     }
-    
     *curString = new string("");
     return true;
 }

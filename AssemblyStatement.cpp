@@ -7,12 +7,31 @@
 
 #include "AssemblyStatement.h"
 
-AssemblyStatement::AssemblyStatement() {
+AssemblyStatement::AssemblyStatement(bool newPrestatement, int newStatement, 
+        int newFirstArgument, int newSecondArgument)
+{
+    prestatement = newPrestatement;
+    statement = newStatement;
+    firstArgument = newFirstArgument;
+    secondArgument = newSecondArgument;
 }
-
-AssemblyStatement::AssemblyStatement(const AssemblyStatement& orig) {
+AssemblyStatement::~AssemblyStatement()
+{
+    
 }
-
-AssemblyStatement::~AssemblyStatement() {
+bool AssemblyStatement::getPrestatement()
+{
+    return prestatement;
 }
-
+int AssemblyStatement::getStatement()
+{
+    return statement;
+}
+int AssemblyStatement::getFirstArgument()
+{
+    return firstArgument;
+}
+int AssemblyStatement::getSecondArgument()
+{
+    return secondArgument;
+}

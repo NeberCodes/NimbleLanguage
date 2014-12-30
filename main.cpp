@@ -59,26 +59,10 @@ int main(int argc, char** argv)
     
     Nimble* nimble = new Nimble();
     cout<<"Nimble Compiler v0.1"<<endl;
-    cout<<"Testing Nimble libraries: "<<endl;
+    cout<<"Testing Nimble Compiler: "<<endl;
     nimble->test();
-    cout<<"Print in order of Expression Tree:"<<endl;
-    expTree->printInOrder();
-    cout<<endl;
+
     
-    cout<<"Print in order of Parse Tree:"<<endl;
-    parseTree->printInOrder();
-    cout<<endl;
-    
-    cout<<"Testing parsing of code: "<<endl;
-    //Test Parser
-    //Parser* parser = new Parser("print(\"Hello World\");");
-    string str = "(1*-2)^(3)+(4)+(5)";
-    cout<<"Parsing: "<<str<<endl;
-    
-    ParseBlock* parseBlock = nimble->getParser()->parse(str);
-    parseBlock->getParseTree()->printPostfix();
-    cout<<endl;
-    parseBlock->getParseTree()->printInOrder();
     delete nimble;
     delete parseTree;
     delete expTree;

@@ -16,12 +16,14 @@ SyntaxParser::SyntaxParser()
 {
     data = "";
     parser = new Parser();
+    block = new SyntaxParseBlock();
 }
 
 SyntaxParser::SyntaxParser(string newData)
 {
     data = newData;
     parser = new Parser(newData);
+    block = new SyntaxParseBlock();
 }
 
 SyntaxParser::~SyntaxParser()
@@ -37,11 +39,20 @@ void SyntaxParser::loadData(string newData)
 //Parse to parse tree then convert to syntax tree
 SyntaxParseBlock* SyntaxParser::parse()
 {
+    cout<<"Parser->Parsing"<<endl;
     ParseBlock* parseBlock = parser->parse();
-    return 0;
+    parseBlock->getParseTree()->printInOrder();
+    cout<<endl;
+    cout<<"Done Parsing adding to tree"<<endl;
+    //Convert parse tree into a syntax tree
+    block->addToTree(parseBlock->getParseTree()->getRoot());
+    cout<<"Done adding to tree adding to count tree"<<endl;
+    block->addToCountTree(parseBlock->getCountTree()->getRoot());
+    cout<<"Done adding to count tree"<<endl;
+    return block;
 }
 SyntaxParseBlock* SyntaxParser::parse(string newData)
 {
-    data = newData;
+    parser->loadData(newData);
     return parse();
 }
