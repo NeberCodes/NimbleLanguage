@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="f2" displayName="Assembly" projectFiles="true" kind="ROOT">
+      <itemPath>AssemblyAddress.cpp</itemPath>
+      <itemPath>AssemblyAddress.h</itemPath>
+      <itemPath>AssemblyFunction.cpp</itemPath>
+      <itemPath>AssemblyFunction.h</itemPath>
+      <itemPath>AssemblyInstruction.cpp</itemPath>
+      <itemPath>AssemblyInstruction.h</itemPath>
+      <itemPath>AssemblyLibrary.cpp</itemPath>
+      <itemPath>AssemblyLibrary.h</itemPath>
+      <itemPath>AssemblyStatement.cpp</itemPath>
+      <itemPath>AssemblyStatement.h</itemPath>
+    </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>Debug.h</itemPath>
       <itemPath>ExpressionNode.h</itemPath>
       <itemPath>ExpressionTree.h</itemPath>
+      <itemPath>Nimble.h</itemPath>
+      <itemPath>ParseBlock.h</itemPath>
       <itemPath>ParseNode.h</itemPath>
       <itemPath>ParseTree.h</itemPath>
       <itemPath>Parser.h</itemPath>
       <itemPath>ParsingConstants.h</itemPath>
+      <itemPath>SyntaxParseBlock.h</itemPath>
+      <itemPath>SyntaxParser.h</itemPath>
+      <itemPath>SyntaxTree.h</itemPath>
+      <itemPath>Variable.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="f1" displayName="Nimble" projectFiles="true" kind="ROOT">
+      <itemPath>Nimble.cpp</itemPath>
+      <itemPath>NimbleFunction.cpp</itemPath>
+      <itemPath>NimbleFunction.h</itemPath>
+      <itemPath>NimbleLibrary.cpp</itemPath>
+      <itemPath>NimbleLibrary.h</itemPath>
+      <itemPath>NimbleSyntax.cpp</itemPath>
+      <itemPath>NimbleSyntax.h</itemPath>
+      <itemPath>NimbleTest.cpp</itemPath>
+      <itemPath>NimbleTest.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -20,9 +50,14 @@
                    projectFiles="true">
       <itemPath>ExpressionNode.cpp</itemPath>
       <itemPath>ExpressionTree.cpp</itemPath>
+      <itemPath>ParseBlock.cpp</itemPath>
       <itemPath>ParseNode.cpp</itemPath>
       <itemPath>ParseTree.cpp</itemPath>
       <itemPath>Parser.cpp</itemPath>
+      <itemPath>SyntaxParseBlock.cpp</itemPath>
+      <itemPath>SyntaxParser.cpp</itemPath>
+      <itemPath>SyntaxTree.cpp</itemPath>
+      <itemPath>Variable.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -48,6 +83,28 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="AssemblyAddress.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AssemblyAddress.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AssemblyFunction.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AssemblyFunction.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AssemblyInstruction.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AssemblyInstruction.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AssemblyLibrary.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AssemblyLibrary.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AssemblyStatement.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AssemblyStatement.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Debug.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="ExpressionNode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ExpressionNode.h" ex="false" tool="3" flavor2="0">
@@ -55,6 +112,30 @@
       <item path="ExpressionTree.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ExpressionTree.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Nimble.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Nimble.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NimbleFunction.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NimbleFunction.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NimbleLibrary.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NimbleLibrary.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NimbleSyntax.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NimbleSyntax.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NimbleTest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NimbleTest.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ParseBlock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ParseBlock.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ParseNode.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -69,6 +150,22 @@
       <item path="Parser.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ParsingConstants.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SyntaxParseBlock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SyntaxParseBlock.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SyntaxParser.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SyntaxParser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SyntaxTree.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SyntaxTree.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Variable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Variable.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -93,6 +190,28 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="AssemblyAddress.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AssemblyAddress.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AssemblyFunction.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AssemblyFunction.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AssemblyInstruction.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AssemblyInstruction.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AssemblyLibrary.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AssemblyLibrary.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="AssemblyStatement.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AssemblyStatement.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Debug.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="ExpressionNode.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ExpressionNode.h" ex="false" tool="3" flavor2="0">
@@ -100,6 +219,30 @@
       <item path="ExpressionTree.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ExpressionTree.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Nimble.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Nimble.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NimbleFunction.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NimbleFunction.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NimbleLibrary.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NimbleLibrary.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NimbleSyntax.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NimbleSyntax.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="NimbleTest.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="NimbleTest.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ParseBlock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ParseBlock.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ParseNode.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -114,6 +257,22 @@
       <item path="Parser.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ParsingConstants.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SyntaxParseBlock.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SyntaxParseBlock.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SyntaxParser.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SyntaxParser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SyntaxTree.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SyntaxTree.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Variable.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Variable.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

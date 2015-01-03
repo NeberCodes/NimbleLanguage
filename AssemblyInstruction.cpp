@@ -122,6 +122,10 @@ int AssemblyInstruction::getStatement(string statementType)
     }
     return 0;
 }
+AssemblyStatement* AssemblyInstruction::getStatementByInt(int statementType)
+{
+    return statementList[statementType];
+}
 
 void AssemblyInstruction::printStatements()
 {
@@ -131,6 +135,99 @@ void AssemblyInstruction::printStatements()
         cout<<"Statement: "<<iter->second<<" "<<
                 (AssemblyInstruction::statementList[iter->first]->getPrestatement()?"true":"false")
                 <<" "<<iter->first<<" "<<AssemblyInstruction::statementList[iter->first]->getFirstArgument()
-                " "<<AssemblyInstruction::statementList[iter->first]->getSecondArgument()<<endl;
+                <<" "<<AssemblyInstruction::statementList[iter->first]->getSecondArgument()<<endl;
     }
+}
+
+//Prestatement, First Argument, Second Argument(0 = nothing, 1 = integer, 
+    //2 = address, 3 = string, 4 = integer/string)
+string AssemblyInstruction::toString()
+{
+    bool added = false;
+    string result = "";
+    AssemblyStatement* assemblyStatement = 
+            AssemblyInstruction::getStatementByInt(statement);
+    if(assemblyStatement->getPrestatement())
+    {
+        result = prestatement;
+        added = true;
+    }
+    else
+        added = false;
+    
+    if(added)
+    {
+        result += " ";
+    }
+    result += statement;
+    result += " ";
+    
+    if(assemblyStatement->getFirstArgument() == STATEMENT_INT)
+    {
+        result += firstArgument;
+        added = true;
+    }
+    else if(assemblyStatement->getFirstArgument() == STATEMENT_ADDRESS)
+    {
+        if(added)
+            result += " ";
+        result += firstAddress->toString();
+        added = true;
+    }
+    else if(assemblyStatement->getFirstArgument() == STATEMENT_STRING)
+    {
+        if(added)
+            result += " ";
+        result += firstSArgument;
+        added = true;
+    }
+    else
+    {
+        if(added)
+            result += " ";
+        if(firstSArgument != "")
+            result += firstSArgument;
+        else if(firstArgument != 0)
+            result += firstArgument;
+        else if(firstAddress != 0)
+            result += firstAddress->toString();
+        added = true;
+    }
+    if(assemblyStatement->getSecondArgument() == STATEMENT_INT)
+    {
+        result += secondArgument;
+        added = true;
+    }
+    else if(assemblyStatement->getSecondArgument() == STATEMENT_ADDRESS)
+    {
+        if(added)
+            result += " ";
+        result += secondAddress->toString();
+        added = true;
+    }
+    else if(assemblyStatement->getSecondArgument() == STATEMENT_STRING)
+    {
+        if(added)
+            result += " ";
+        result += secondSArgument;
+        added = true;
+    }
+    else
+    {
+        if(added)
+            result += " ";
+        if(secondSArgument != "")
+            result += secondSArgument;
+        else if(secondArgument != 0)
+            result += secondArgument;
+        else if(secondAddress != 0)
+            result += secondAddress->toString();
+        added = true;
+    }
+    return result; 
+}
+
+void AssemblyInstruction::print()
+{
+    cout<<toString();
 }

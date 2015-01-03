@@ -7,13 +7,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/danielrigby/NetBeansProjects/CompilerProject/main.cpp</file>
-            <file>file:/Users/danielrigby/NetBeansProjects/CompilerProject/ExpressionNode.h</file>
-            <file>file:/Users/danielrigby/NetBeansProjects/CompilerProject/ExpressionNode.cpp</file>
-            <file>file:/Users/danielrigby/NetBeansProjects/CompilerProject/ExpressionTree.h</file>
-            <file>file:/Users/danielrigby/NetBeansProjects/CompilerProject/ExpressionTree.cpp</file>
-            <file>file:/Users/danielrigby/NetBeansProjects/CompilerProject/Parser.h</file>
-            <file>file:/Users/danielrigby/NetBeansProjects/CompilerProject/Parser.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParseBlock.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParseTree.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParseNode.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/main.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParseTree.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/Parser.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParsingConstants.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParseBlock.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/Parser.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/Debug.h</file>
         </group>
     </open-files>
 </project-private>

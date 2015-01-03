@@ -16,6 +16,7 @@ public:
     ParseTree();
     ParseTree(ParseNode*);
     ~ParseTree();
+    void deleteNode(ParseNode*);
     ParseNode* search(ParseNode*, int);
     ParseNode* search(ParseNode*, double);
     ParseNode* search(ParseNode*, string);
@@ -31,7 +32,6 @@ public:
     void printInOrder();
 private:
     ParseNode* root;
-
 };
 
 #endif	/* PARSETREE_H */

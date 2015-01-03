@@ -16,6 +16,7 @@ public:
     ExpressionTree();
     ExpressionTree(ExpressionNode*);
     ~ExpressionTree();
+    void deleteNode(ExpressionNode*);
     ExpressionNode* search(ExpressionNode*, int);
     ExpressionNode* search(ExpressionNode*, double);
     ExpressionNode* search(ExpressionNode*, string);

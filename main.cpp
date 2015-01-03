@@ -62,7 +62,6 @@ int main(int argc, char** argv)
     cout<<"Testing Nimble Compiler: "<<endl;
     nimble->test();
 
-    
     delete nimble;
     delete parseTree;
     delete expTree;

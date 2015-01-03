@@ -24,19 +24,55 @@ void NimbleTest::test()
     cout<<"Nimble Testing."<<endl;
     testFunction();
     testSyntaxTree();
+    testAssembler();
     testAssemblyInstruction();
 }
-
+void NimbleTest::testAssembler()
+{
+    cout<<"Testing Assembler"<<endl;
+    int MYLEN = AssemblyAddress::addVariable("mylen"),
+            MYMSG = AssemblyAddress::addVariable("mymsg");
+    AssemblyLibrary* library = new AssemblyLibrary("main");
+    AssemblyFunction* function = new AssemblyFunction();
+    AssemblyInstruction* instruction = new AssemblyInstruction();
+    AssemblyAddress* address = new AssemblyAddress();
+    
+    
+    function->setName("print");
+    
+    instruction->setStatement("push");
+    address->setVariable(MYLEN);
+    instruction->setSecondAddress(address);
+    function->addInstruction(instruction);
+    
+    instruction = new AssemblyInstruction();
+    address = new AssemblyAddress();
+    instruction->setStatement("push");
+    instruction->setFirstSArgument("dword");
+    address->setVariable(MYMSG);
+    instruction->setSecondAddress(address);
+    cout<<"SECOND ADDRESS: "<<instruction->getSecondAddress()->toString()<<endl;
+    cout<<"FIRST ARGUMENT: "<<instruction->getFirstSArgument()<<endl;
+    function->addInstruction(instruction);
+    
+    cout<<"Printing all instructions of: "<<function->getName()<<endl;
+    function->printInstructions();
+    cout<<endl;
+    
+    
+}
 void NimbleTest::testAssemblyInstruction()
 {
     cout<<"Testing Assembly Instruction"<<endl;
-    //Prestatement, First Argument, Second Argument(0 = nothing, 1 = integer, 
-    //2 = variable, 3 = string, 4 = integer/string)
-    AssemblyInstruction::addStatementType("mov", false, 1, 1);
-    AssemblyInstruction::addStatementType("db", true, 4, 0);
-    AssemblyInstruction::addStatementType("inc", true, 2, 0);
     cout<<"Print all Assembly Statement Types: "<<endl;
     AssemblyInstruction::printStatements();
+    
+    cout<<"Testing Assembly Address when adding arguments"<<endl;
+    AssemblyAddress* address = new AssemblyAddress();
+    address->setArgument(1);
+    cout<<"Value of Assembly address with argument: 1: "<<address->getAddress()
+            <<endl;
+    cout<<"Number of argument for address: "<<address->getArgument()<<endl;
 }
 void NimbleTest::testFunction()
 {

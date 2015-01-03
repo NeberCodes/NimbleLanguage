@@ -25,6 +25,11 @@ void NimbleLibrary::addLibrary(NimbleLibrary* newNimbleLibrary)
     libraryList.push_back(*newNimbleLibrary);
 }
 
+void NimbleLibrary::setName(string newName)
+{
+    name = newName;
+}
+
 void NimbleLibrary::removeLibrary(string searchName)
 {
     for(list<NimbleLibrary>::iterator iter = libraryList.begin(); iter != libraryList.end(); iter++)
@@ -60,4 +65,19 @@ NimbleLibrary* NimbleLibrary::findRLibrary(string searchName)
 string NimbleLibrary::getName()
 {
     return name;
+}
+
+void NimbleLibrary::addFunction(NimbleFunction* newFunction)
+{
+    functionList.push_back(*newFunction);
+}
+void NimbleLibrary::removeFunction(string functionName)
+{
+    for(list<NimbleFunction>::iterator iter = functionList.begin(); iter != functionList.end(); iter++)
+    {
+        if(iter->getName() == functionName)
+        {
+            functionList.erase(iter);
+        }
+    }
 }

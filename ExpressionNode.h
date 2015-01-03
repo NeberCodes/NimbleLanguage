@@ -24,8 +24,9 @@ private:
     int theInt;
     string str;
     char symbol;         // The operator in a node of type OPERATOR.
-    ExpressionNode *left;   // Pointers to subtrees,
-    ExpressionNode *right;  //     in a node of type OPERATOR.
+    ExpressionNode* left;   // Pointers to subtrees,
+    ExpressionNode* right;  //     in a node of type OPERATOR.
+    ExpressionNode* branch;
 public:
     ExpressionNode(string);
     ~ExpressionNode();
@@ -34,7 +35,8 @@ public:
     ExpressionNode(char);
     ExpressionNode* getLeft();
     ExpressionNode* getRight();
-    
+    ExpressionNode* getBranch();
+    void setBranch(ExpressionNode*);
     void setLeft(ExpressionNode*);
     
     void setRight(ExpressionNode*);
@@ -45,6 +47,8 @@ public:
     char getSymbol();
     int getType();
     bool isBrace();
+    bool isNotOperator();
+    bool isType(const char[], const int);
  }; // end ExpNode
 
 void print(ExpressionNode*);

@@ -24,6 +24,7 @@ private:
                      //   (Value is NUMBER or OPERATOR.)
     double theDouble;   // The value in a node of type NUMBER.
     int theInt;
+    float theFloat;
     string str;
     char symbol;         // The operator in a node of type OPERATOR.
     ParseNode *left;   // Pointers to subtrees,
@@ -43,7 +44,8 @@ public:
     void setLeft(ParseNode*);
     
     void setRight(ParseNode*);
-    
+    float getFloat();
+    void setFloat(float);
     double getDouble();
     int getInt();
     string getString();
@@ -51,6 +53,7 @@ public:
     int getType();
     bool isBrace();
     bool isNotOperator();
+    bool isType(const char[], const int);
  }; // end ExpNode
 
 void print(ParseNode*);

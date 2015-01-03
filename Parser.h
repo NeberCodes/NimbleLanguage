@@ -11,6 +11,7 @@
 #include <string>
 #include "ParseTree.h"
 #include "ParsingConstants.h"
+#include "ParseBlock.h"
 
 using namespace std;
 
@@ -22,13 +23,15 @@ public:
     Parser(string);
     ~Parser();
     void loadData(string);
-    ParseTree* parse();
-    ParseTree* parse(string);
+    ParseBlock* parse();
+    ParseBlock* parse(string);
+    bool isToken(char);
+    bool isType(char, const char[], const int);
 private:
     string data;
-    ParseTree* parseTree;
-    ParseTree* lineCount;
+    ParseBlock* block;
 };
+
 
 #endif	/* PARSER_H */
 
