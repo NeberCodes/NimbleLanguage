@@ -16,19 +16,26 @@
 
 using namespace std;
 
+//Assembly function storing the basis of an assembly function
+//through a list of parameters and instructions.
 class AssemblyFunction 
 {
 public:
     AssemblyFunction();
     ~AssemblyFunction();
     list<AssemblyInstruction> getInstructions();
+    list<AssemblyInstruction> getParams();
+    
     void addInstruction(AssemblyInstruction*);
+    void addParam(AssemblyInstruction*);
+    
     string getName();
     void setName(string);
     void printInstructions();
 private:
     string name;
     list<AssemblyInstruction> instructions;
+    list<AssemblyInstruction> params;
 };
 
 #endif

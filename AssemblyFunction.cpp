@@ -6,9 +6,20 @@ AssemblyFunction::AssemblyFunction()
 AssemblyFunction::~AssemblyFunction()
 {
 }
+
+list<AssemblyInstruction> AssemblyFunction::getParams()
+{
+    return params;
+}
+
 list<AssemblyInstruction> AssemblyFunction::getInstructions()
 {
     return instructions;
+}
+
+void AssemblyFunction::addParam(AssemblyInstruction* newParam)
+{
+    params.push_back(*newParam);
 }
 void AssemblyFunction::addInstruction(AssemblyInstruction* newInstruction)
 {
