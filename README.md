@@ -23,7 +23,7 @@ Hi I'm Daniel Rigby and i'm a coder. I have experience in C++, Java, PHP, Javasc
 
 I love coding and am pursing software developing as a career. Whilst doing this project i hope to obtain many important skills in the coding universe and hope to expand my reportoire and work with others on this project.
 
-Apart from coding i enjoy music and am learning the guitar and play the piano and have a love for sports, though i admit i watch sports more than play them but a goal of mine is to take up a sports in me free time!
+Apart from coding i enjoy music and sports.
 
 Want to Help?
 ==============
