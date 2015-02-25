@@ -1,6 +1,6 @@
 /* 
- * File:   NimbleFunction.h
- * Author: danielrigby
+ * File:   AssemblyFunction.h
+ * Author: Daniel Rigby
  *
  * Created on December 27, 2014, 10:49 AM
  */
@@ -22,6 +22,7 @@ class AssemblyFunction
 {
 public:
     AssemblyFunction();
+    AssemblyFunction(string);
     ~AssemblyFunction();
     list<AssemblyInstruction> getInstructions();
     list<AssemblyInstruction> getParams();
@@ -37,6 +38,7 @@ private:
     list<AssemblyInstruction> instructions;
     list<AssemblyInstruction> params;
 };
+
 
 #endif
 
