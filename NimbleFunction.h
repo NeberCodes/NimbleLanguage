@@ -15,9 +15,12 @@
 
 using namespace std;
 
-class NimbleFunction {
+//Nimble function contain basic structure of a nimble function
+class NimbleFunction 
+{
 public:
     NimbleFunction();
+    NimbleFunction(string);
     ~NimbleFunction();
     list<Variable> getArguments();
     void addArgument(Variable);

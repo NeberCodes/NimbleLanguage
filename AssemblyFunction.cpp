@@ -3,6 +3,12 @@
 AssemblyFunction::AssemblyFunction()
 {
 }
+
+AssemblyFunction::AssemblyFunction(string newName)
+{
+    name = newName;
+}
+
 AssemblyFunction::~AssemblyFunction()
 {
 }

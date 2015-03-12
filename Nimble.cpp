@@ -74,6 +74,8 @@ void Nimble::test()
     testVariables();
     testLibraries();
     nimbleTest->test();
+    prototypeConverter();
+    
 }
 void Nimble::testVariables()
 {
@@ -122,3 +124,32 @@ Parser* Nimble::getParser()
     return parser;
 }
 
+/*
+ NimbleConverter class holds list of conversion from which nimble types to
+ which assembly types (NimbleConversion Class: pointer to nimble function, pointer to assemblyfunction
+ Has ability to loop through NimbleSyntaxTree converting them into a list of assembly instructions
+ NOTE: add ability for assembly instructions to output as an assembly instruction may need to link variables in
+ Need iterator to go through syntax tree, maybe NimbleSyntaxTreeIterator.
+ Loop through syntax tree converting nimble function to assembly*/
+
+void Nimble::prototypeConverter()
+{
+    //Create relevant Nimble and Assembly print functions and library. 
+    NimbleLibrary* nimble = new NimbleLibrary("Nimble");
+    NimbleFunction* nimblePrintFunc = new NimbleFunction("print");
+    nimble->addFunction(nimblePrintFunc);
+    
+        //add arguments to function
+    Variable* varOne = new Variable("output");
+    
+    int key = Variable::addType("string");
+    varOne->addType(key);
+    nimblePrintFunc->addArgument(*varOne);
+    
+    AssemblyLibrary* assembly = new AssemblyLibrary("Assembly");
+    AssemblyFunction* assemblyPrintFunc = new AssemblyFunction("print");
+    //Create list of nimble->assembly conversion links for functions
+//    map<NimbleFunction*, AssemblyFunction*> conversionLinks;
+    
+    //simply create a print function link
+}

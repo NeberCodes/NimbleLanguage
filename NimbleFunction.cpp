@@ -12,6 +12,13 @@ NimbleFunction::NimbleFunction()
     syntaxTree = new SyntaxTree();
     name = "";
 }
+
+NimbleFunction::NimbleFunction(string newName)
+{
+    syntaxTree = new SyntaxTree();
+    name = newName;
+}
+
 NimbleFunction::~NimbleFunction()
 {
     delete syntaxTree;

@@ -43,6 +43,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/ExpressionNode.o \
 	${OBJECTDIR}/ExpressionTree.o \
 	${OBJECTDIR}/Nimble.o \
+	${OBJECTDIR}/NimbleConverter.o \
+	${OBJECTDIR}/NimbleError.o \
 	${OBJECTDIR}/NimbleFunction.o \
 	${OBJECTDIR}/NimbleLibrary.o \
 	${OBJECTDIR}/NimbleSyntax.o \
@@ -121,6 +123,16 @@ ${OBJECTDIR}/Nimble.o: Nimble.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Nimble.o Nimble.cpp
+
+${OBJECTDIR}/NimbleConverter.o: NimbleConverter.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/NimbleConverter.o NimbleConverter.cpp
+
+${OBJECTDIR}/NimbleError.o: NimbleError.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/NimbleError.o NimbleError.cpp
 
 ${OBJECTDIR}/NimbleFunction.o: NimbleFunction.cpp 
 	${MKDIR} -p ${OBJECTDIR}

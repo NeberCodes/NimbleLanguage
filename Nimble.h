@@ -13,7 +13,12 @@
 #include "NimbleLibrary.h"
 #include "NimbleTest.h"
 #include "SyntaxTree.h"
+#include "AssemblyLibrary.h"
+#include "AssemblyFunction.h"
 
+#include <map>
+
+using namespace std;
 //List of Variable types
 const string VARIABLE_TYPES[] = {"void", "int", "float", "double", "char"};
 const int VARIABLE_TYPES_SIZE = sizeof(VARIABLE_TYPES) / sizeof(*VARIABLE_TYPES);
@@ -32,6 +37,7 @@ public:
     void testLibraries();
     void testVariables();
     void test();
+    void prototypeConverter();
     Parser* getParser();
     
 private:

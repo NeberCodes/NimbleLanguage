@@ -7,18 +7,41 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/Nimble.cpp</file>
-            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParseBlock.h</file>
-            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParseTree.cpp</file>
-            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParseNode.cpp</file>
             <file>file:/Users/danielrigby/NetBeansProjects/Nimble/main.cpp</file>
-            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/NimbleFunction.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/NimbleLibrary.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/NimbleFunction.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/AssemblyAddress.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/NimbleLibrary.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/NimbleSyntax.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/SyntaxTree.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/Debug.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/AssemblyInstruction.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/AssemblyLibrary.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParseBlock.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParseNode.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/AssemblyStatement.h</file>
             <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParseTree.h</file>
             <file>file:/Users/danielrigby/NetBeansProjects/Nimble/Parser.cpp</file>
             <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParsingConstants.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/Variable.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/AssemblyFunction.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/AssemblyManager.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/AssemblyInstruction.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/AssemblyStatement.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/Nimble.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParseTree.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/NimbleFunction.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/AssemblyLibrary.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/Nimble.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/NimbleConverter.cpp</file>
             <file>file:/Users/danielrigby/NetBeansProjects/Nimble/ParseBlock.cpp</file>
             <file>file:/Users/danielrigby/NetBeansProjects/Nimble/Parser.h</file>
-            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/Debug.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/NimbleConverter.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/Variable.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/AssemblyManager.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/NimbleTest.h</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/NimbleSyntax.cpp</file>
+            <file>file:/Users/danielrigby/NetBeansProjects/Nimble/AssemblyFunction.cpp</file>
         </group>
     </open-files>
 </project-private>
